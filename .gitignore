@@ -1,0 +1,69 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.cover
+
+# Dependency directories (remove the comment below if you have dependencies you want to ignore)
+# vendor/
+
+# Go workspace file
+go.work
+
+# Go build artifacts
+*.o
+*.a
+
+# Logs
+*.log
+
+# IDE Specific
+.idea/
+*.iml
+
+# IntelliJ project files
+*.iws
+*.ipr
+
+# IDE specific output folders
+out/
+
+# VCS
+.DS_Store
+.vscode/
+
+# Specific to Eclipse
+.project
+.classpath
+
+# Intellij IDEA
+*.idea/
+*.iml
+*.ipr
+*.iws
+
+# User-specific files
+*.swp
+*.swo
+*.tmp
+
+# Go specific
+bin/
+pkg/
+cmd/
+
+# Exclude environment variable files
+.env
+.env.*
+
+# Exclude Docker files if you're using Docker
+docker-compose.override.yml
+.docker/
+
+# Exclude any custom build artifacts
+/build/

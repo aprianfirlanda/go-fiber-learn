@@ -43,9 +43,6 @@ out/
 
 # Intellij IDEA
 *.idea/
-*.iml
-*.ipr
-*.iws
 
 # User-specific files
 *.swp

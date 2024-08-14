@@ -27,7 +27,45 @@ go get github.com/sirupsen/logrus
 
 ## requirement
 
+### Dependency Injection Generator
 ```shell
 go install github.com/google/wire/cmd/wire@latest
 ```
 add to the path --> $GOPATH/bin/wire
+
+create file 'injector.go' with this code on first line
+```
+// go:build wireinject
+// +build wireinject
+```
+if you complete create injector. then run
+```shell
+wire
+```
+it will generate file wire_gen.go that you can use.
+
+### DB Migration
+
+```shell
+go install -tags ‘postgres’ github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+```
+
+how to create file migration
+```shell
+migrate create -ext sql -dir db/migrations nama_file_migration
+```
+
+how to run db migration (all)
+````shell
+migrate -database "koneksidatabase" -path folder up
+````
+
+how to rollback db migration (1 by 1)
+````shell
+migrate -database "koneksidatabase" -path folder down
+````
+
+if there is dirty state. fix it manually and use this command to choose version the before migration is error.
+```shell
+migrate -database "koneksi_database" -path folder force versi
+```

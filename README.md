@@ -20,6 +20,11 @@ install google wire for dependency injection
 go get github.com/google/wire
 ```
 
+install logrus for logger
+```shell
+go get github.com/sirupsen/logrus
+```
+
 ## requirement
 
 ```shell

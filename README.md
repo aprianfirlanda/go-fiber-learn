@@ -35,6 +35,17 @@ install golang viper for manage configuration env file
 go get github.com/spf13/viper
 ```
 
+install gorm postgres
+```shell
+go get gorm.io/gorm
+go get gorm.io/driver/postgres
+```
+
+install raw postgres
+```shell
+go get github.com/lib/pq
+```
+
 ## requirement
 
 ### Dependency Injection Generator

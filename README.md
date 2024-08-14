@@ -82,7 +82,7 @@ how to run db migration (all)
 migrate -database "koneksidatabase" -path folder up
 ````
 
-how to rollback db migration (1 by 1)
+how to rollback db migration (all)
 ````shell
 migrate -database "koneksidatabase" -path folder down
 ````

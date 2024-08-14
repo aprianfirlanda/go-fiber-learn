@@ -68,8 +68,9 @@ it will generate file wire_gen.go that you can use.
 ### DB Migration
 
 ```shell
-go install -tags ‘postgres’ github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+go install -tags postgres github.com/golang-migrate/migrate/v4/cmd/migrate@latest
 ```
+add to the path --> $GOPATH/bin/migrate
 
 how to create file migration
 ```shell

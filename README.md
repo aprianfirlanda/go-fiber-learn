@@ -30,6 +30,11 @@ install golang validation
 go get github.com/go-playground/validator/v10
 ```
 
+install golang viper for manage configuration env file
+```shell
+go get github.com/spf13/viper
+```
+
 ## requirement
 
 ### Dependency Injection Generator

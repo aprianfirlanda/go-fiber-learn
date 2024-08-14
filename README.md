@@ -25,6 +25,11 @@ install logrus for logger
 go get github.com/sirupsen/logrus
 ```
 
+install golang validation
+```shell
+go get github.com/go-playground/validator/v10
+```
+
 ## requirement
 
 ### Dependency Injection Generator

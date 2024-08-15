@@ -26,12 +26,24 @@ func TestMain(m *testing.M) {
 
 func TestCategoryServiceImplCreate(t *testing.T) {
 	serviceImpl := NewCategoryServiceImpl(db)
-	err := serviceImpl.Create(category)
-	assert.Nil(t, err)
+	assert.NotPanics(t, func() {
+		serviceImpl.Create(category)
+	}, "The code did panic as not expected")
 }
 
 func TestCategoryServiceImplError(t *testing.T) {
 	serviceImpl := NewCategoryServiceImpl(db)
-	err := serviceImpl.Create(category)
-	assert.NotNil(t, err)
+	assert.Panics(t, func() {
+		serviceImpl.Create(category)
+	}, "The code did not panic as expected")
+}
+
+func TestPanic(t *testing.T) {
+	// Define a function that will panic
+	funcThatPanic := func() {
+		panic("This is a panic")
+	}
+
+	// Use assert.Panics to check if the function panics
+	assert.Panics(t, func() { funcThatPanic() }, "The code did not panic as expected")
 }

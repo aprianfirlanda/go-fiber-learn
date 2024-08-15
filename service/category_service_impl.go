@@ -14,11 +14,10 @@ func NewCategoryServiceImpl(db *gorm.DB) *CategoryServiceImpl {
 	return &CategoryServiceImpl{db: db}
 }
 
-func (service CategoryServiceImpl) Create(category *domain.Category) error {
+func (service CategoryServiceImpl) Create(category *domain.Category) {
 	err := service.db.Create(&category).Error
 	if err != nil {
 		logrus.Error(err)
-		return err
+		panic(err)
 	}
-	return nil
 }

@@ -37,13 +37,3 @@ func TestCategoryServiceImplError(t *testing.T) {
 		serviceImpl.Create(category)
 	}, "The code did not panic as expected")
 }
-
-func TestPanic(t *testing.T) {
-	// Define a function that will panic
-	funcThatPanic := func() {
-		panic("This is a panic")
-	}
-
-	// Use assert.Panics to check if the function panics
-	assert.Panics(t, func() { funcThatPanic() }, "The code did not panic as expected")
-}

@@ -4,16 +4,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"go-fiber-learn/app"
 	"go-fiber-learn/model/domain"
+	"go-fiber-learn/model/web"
 	"gorm.io/gorm"
 	"testing"
 )
 
 var db *gorm.DB
-
-var category = &domain.Category{
-	ID:   1,
-	Name: "Satu",
-}
 
 func TestMain(m *testing.M) {
 	app.LoadEnvironment()
@@ -21,19 +17,12 @@ func TestMain(m *testing.M) {
 
 	m.Run()
 
-	db.Delete(category)
+	db.Delete(&domain.Category{}).Where("Name = 'satu'")
 }
 
 func TestCategoryServiceImplCreate(t *testing.T) {
 	serviceImpl := NewCategoryServiceImpl(db)
 	assert.NotPanics(t, func() {
-		serviceImpl.Create(category)
+		serviceImpl.Create(&web.CategoryCreateRequest{Name: "satu"})
 	}, "The code did panic as not expected")
-}
-
-func TestCategoryServiceImplError(t *testing.T) {
-	serviceImpl := NewCategoryServiceImpl(db)
-	assert.Panics(t, func() {
-		serviceImpl.Create(category)
-	}, "The code did not panic as expected")
 }

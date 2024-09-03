@@ -1,7 +1,9 @@
 package service
 
-import "go-fiber-learn/model/domain"
+import (
+	"go-fiber-learn/model/web"
+)
 
 type CategoryService interface {
-	Create(category domain.Category)
+	Create(request *web.CategoryCreateRequest)
 }

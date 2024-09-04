@@ -17,12 +17,10 @@ func TestMain(m *testing.M) {
 
 	m.Run()
 
-	db.Delete(&domain.Category{}).Where("Name = 'satu'")
+	db.Where("name = ?", "satu").Delete(&domain.Category{})
 }
 
 func TestCategoryServiceImplCreate(t *testing.T) {
-	serviceImpl := NewCategoryServiceImpl(db)
-	assert.NotPanics(t, func() {
-		serviceImpl.Create(&web.CategoryCreateRequest{Name: "satu"})
-	}, "The code did panic as not expected")
+	service := NewCategoryService(db)
+	assert.Nil(t, service.Create(&web.CategoryCreateRequest{Name: "satu"}), "Create Category return an error")
 }

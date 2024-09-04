@@ -5,5 +5,5 @@ import (
 )
 
 type CategoryService interface {
-	Create(request *web.CategoryCreateRequest)
+	Create(request *web.CategoryCreateRequest) error
 }

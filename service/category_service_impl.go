@@ -11,15 +11,16 @@ type CategoryServiceImpl struct {
 	DB *gorm.DB
 }
 
-func NewCategoryServiceImpl(db *gorm.DB) *CategoryServiceImpl {
+func NewCategoryService(db *gorm.DB) CategoryService {
 	return &CategoryServiceImpl{DB: db}
 }
 
-func (service *CategoryServiceImpl) Create(request *web.CategoryCreateRequest) {
+func (service *CategoryServiceImpl) Create(request *web.CategoryCreateRequest) error {
 	category := domain.Category{Name: request.Name}
 	err := service.DB.Create(&category).Error
 	if err != nil {
 		logrus.Error(err)
-		panic(err)
+		return err
 	}
+	return nil
 }

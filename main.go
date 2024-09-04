@@ -2,21 +2,24 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"go-fiber-learn/app"
+	"go-fiber-learn/handler"
+	"go-fiber-learn/service"
 	"time"
 )
 
 func main() {
-	app := fiber.New(fiber.Config{
+	fiberApp := fiber.New(fiber.Config{
 		IdleTimeout:  time.Second * 5,
 		ReadTimeout:  time.Second * 5,
 		WriteTimeout: time.Second * 5,
 	})
 
-	app.Get("/", func(ctx *fiber.Ctx) error {
-		return ctx.SendString("Hello World")
-	})
+	db := app.OpenConnection()
+	categoryService := service.NewCategoryService(db)
+	handler.CategoryController(fiberApp, categoryService)
 
-	err := app.Listen("localhost:3000")
+	err := fiberApp.Listen("localhost:3000")
 	if err != nil {
 		panic(err)
 	}

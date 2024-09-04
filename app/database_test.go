@@ -6,7 +6,7 @@ import (
 )
 
 func TestOpenConnection(t *testing.T) {
-	LoadEnvironment()
+	LoadEnvironment("test")
 	db := OpenConnection()
 	assert.NotNil(t, db)
 }

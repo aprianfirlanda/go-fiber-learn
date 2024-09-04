@@ -15,6 +15,7 @@ func main() {
 		WriteTimeout: time.Second * 5,
 	})
 
+	app.LoadEnvironment("run")
 	db := app.OpenConnection()
 	categoryService := service.NewCategoryService(db)
 	handler.CategoryController(fiberApp, categoryService)

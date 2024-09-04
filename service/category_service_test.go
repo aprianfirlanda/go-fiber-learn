@@ -12,7 +12,7 @@ import (
 var db *gorm.DB
 
 func TestMain(m *testing.M) {
-	app.LoadEnvironment()
+	app.LoadEnvironment("test")
 	db = app.OpenConnection()
 
 	m.Run()

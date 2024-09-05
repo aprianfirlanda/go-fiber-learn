@@ -1,7 +1,6 @@
 package service
 
 import (
-	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"go-fiber-learn/app"
@@ -22,6 +21,5 @@ func TestCategoryServiceImpl_Create(t *testing.T) {
 	service := NewCategoryService(db, categoryRepositoryMock)
 	categoryId, err := service.Create(&web.CategoryCreateRequest{Name: "spend"})
 	assert.Nil(t, err, "Create Category return an error")
-	logrus.Infof("categoryId : %d", categoryId)
 	assert.NotEqual(t, int32(0), categoryId)
 }

@@ -22,5 +22,7 @@ func TestMain(m *testing.M) {
 
 func TestCategoryServiceImplCreate(t *testing.T) {
 	service := NewCategoryService(db)
-	assert.Nil(t, service.Create(&web.CategoryCreateRequest{Name: "satu"}), "Create Category return an error")
+	categoryId, err := service.Create(&web.CategoryCreateRequest{Name: "satu"})
+	assert.Nil(t, err, "Create Category return an error")
+	assert.NotEqual(t, 0, categoryId)
 }

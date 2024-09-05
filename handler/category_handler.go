@@ -6,15 +6,22 @@ import (
 	"go-fiber-learn/service"
 )
 
-func CategoryController(app *fiber.App, categoryService service.CategoryService) {
+func CategoryHandler(app *fiber.App, categoryService service.CategoryService) {
 
-	app.Post("/", func(ctx *fiber.Ctx) error {
+	apiV1Category := app.Group("/api/v1/category")
+
+	// create new category
+	apiV1Category.Post("/new", func(ctx *fiber.Ctx) error {
 		request := new(web.CategoryCreateRequest)
 		_ = ctx.BodyParser(request)
-		err := categoryService.Create(request)
+		categoryId, err := categoryService.Create(request)
 		if err != nil {
-			return err
+			return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": err.Error(),
+			})
 		}
-		return nil
+		return ctx.Status(fiber.StatusCreated).JSON(fiber.Map{
+			"category_id": categoryId,
+		})
 	})
 }

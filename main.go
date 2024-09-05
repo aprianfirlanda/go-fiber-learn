@@ -18,7 +18,7 @@ func main() {
 	app.LoadEnvironment("run")
 	db := app.OpenConnection()
 	categoryService := service.NewCategoryService(db)
-	handler.CategoryController(fiberApp, categoryService)
+	handler.CategoryHandler(fiberApp, categoryService)
 
 	err := fiberApp.Listen("localhost:3000")
 	if err != nil {

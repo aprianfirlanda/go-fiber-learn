@@ -7,7 +7,7 @@ import (
 )
 
 func TestLoadConfig(t *testing.T) {
-	LoadEnvironment("test")
+	LoadEnvironment("..")
 
 	assert.NotEqual(t, "", viper.GetString("DATABASE_USER"))
 	assert.NotEqual(t, "", viper.GetString("DATABASE_PASSWORD"))

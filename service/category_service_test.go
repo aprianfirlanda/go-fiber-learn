@@ -11,7 +11,7 @@ import (
 )
 
 func TestCategoryServiceImpl_Create(t *testing.T) {
-	app.LoadEnvironment("test")
+	app.LoadEnvironment("..")
 	db := app.OpenConnection()
 	categoryRepositoryMock := new(repository.CategoryRepositoryMock)
 	categoryRepositoryMock.Mock.On("Create", db, &domain.Category{Name: "spend"}).Run(func(args mock.Arguments) {

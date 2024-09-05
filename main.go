@@ -16,7 +16,7 @@ func main() {
 		WriteTimeout: time.Second * 5,
 	})
 
-	app.LoadEnvironment("run")
+	app.LoadEnvironment(".")
 	db := app.OpenConnection()
 	categoryRepository := repository.NewCategoryRepository()
 	categoryService := service.NewCategoryService(db, categoryRepository)

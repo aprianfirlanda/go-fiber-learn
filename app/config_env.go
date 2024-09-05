@@ -5,12 +5,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func LoadEnvironment(mode string) {
-	if mode == "test" {
-		viper.AddConfigPath("..")
-	} else {
-		viper.AddConfigPath(".")
-	}
+func LoadEnvironment(configPath string) {
+	viper.AddConfigPath(configPath)
 	viper.SetConfigType("env")
 	viper.SetConfigName(".env")
 

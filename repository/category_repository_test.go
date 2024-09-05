@@ -8,7 +8,7 @@ import (
 )
 
 func TestCategoryRepositoryImpl_Create(t *testing.T) {
-	app.LoadEnvironment("test")
+	app.LoadEnvironment("..")
 	db := app.OpenConnection()
 	repository := NewCategoryRepository()
 	category := &domain.Category{

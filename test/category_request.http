@@ -1,0 +1,9 @@
+### Add New Category
+POST http://localhost:3000/api/v1/category/new
+Content-Type: application/json
+
+{
+  "name": "spend"
+}
+
+###

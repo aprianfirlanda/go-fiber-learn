@@ -6,8 +6,7 @@ import (
 	"go-fiber-learn/service"
 )
 
-func CategoryHandler(app *fiber.App, categoryService service.CategoryService) {
-
+func NewCategoryHandler(app *fiber.App, categoryService service.CategoryService) {
 	apiV1Category := app.Group("/api/v1/category")
 
 	// create new category

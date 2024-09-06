@@ -10,18 +10,25 @@ import (
 )
 
 func main() {
+	// load .env file
+	app.LoadEnvironment(".")
+
+	// initialize go fiber
 	fiberApp := fiber.New(fiber.Config{
 		IdleTimeout:  time.Second * 5,
 		ReadTimeout:  time.Second * 5,
 		WriteTimeout: time.Second * 5,
 	})
 
-	app.LoadEnvironment(".")
+	// Open Connection To PostgreSQL Database
 	db := app.OpenConnection()
+
+	// category
 	categoryRepository := repository.NewCategoryRepository()
 	categoryService := service.NewCategoryService(db, categoryRepository)
-	handler.CategoryHandler(fiberApp, categoryService)
+	handler.NewCategoryHandler(fiberApp, categoryService)
 
+	// run go fiber
 	err := fiberApp.Listen("localhost:3000")
 	if err != nil {
 		panic(err)

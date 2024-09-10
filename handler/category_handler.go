@@ -9,16 +9,15 @@ import (
 func NewCategoryHandler(app *fiber.App, categoryService service.CategoryService) {
 	apiV1Category := app.Group("/api/v1/category")
 
-	// create new category
+	// create a new category
 	apiV1Category.Post("/new", func(ctx *fiber.Ctx) error {
 		request := new(web.CategoryCreateRequest)
 		_ = ctx.BodyParser(request)
 		categoryId, err := categoryService.Create(request)
 		if err != nil {
-			return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"error": err.Error(),
-			})
+			return err
 		}
+
 		return ctx.Status(fiber.StatusCreated).JSON(fiber.Map{
 			"category_id": categoryId,
 		})

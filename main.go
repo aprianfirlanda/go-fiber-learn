@@ -1,8 +1,10 @@
 package main
 
 import (
+	"errors"
 	"github.com/gofiber/fiber/v2"
 	"go-fiber-learn/app"
+	"go-fiber-learn/exception"
 	"go-fiber-learn/handler"
 	"go-fiber-learn/repository"
 	"go-fiber-learn/service"
@@ -18,6 +20,22 @@ func main() {
 		IdleTimeout:  time.Second * 5,
 		ReadTimeout:  time.Second * 5,
 		WriteTimeout: time.Second * 5,
+		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
+			var sqlError *exception.SqlError
+			if errors.As(err, &sqlError) {
+				return ctx.
+					Status(fiber.StatusInternalServerError).
+					JSON(fiber.Map{
+						"message": sqlError.Message,
+					})
+			}
+
+			return ctx.
+				Status(fiber.StatusInternalServerError).
+				JSON(fiber.Map{
+					"message": err.Error(),
+				})
+		},
 	})
 
 	// Open Connection To PostgreSQL Database
